@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>loginPage</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("input").focus(function(){
+                $(this).css("background-color","#cccccc");
+            });
+            $("input").blur(function(){
+                $(this).css("background-color","#ffffff");
+            });
+        });
+
+        $(document).ready(function() {
+            $("#loginBtn").click(function () {
+                $.post("http://localhost:8080/login",
+                    {
+                        username:$("#fullname").val(),
+                        password:$("#password").val()
+                    },
+                    function (data,status) {
+
+                        if(data.localeCompare("0") != 0){
+                            alert("login succeed")
+                            var username=document.getElementById("fullname").value;
+                            if(window.localStorage){
+                                var storage=window.localStorage;
+                                storage[username]=data;
+                                console.log(storage.username);
+                            }
+                            setTimeout(function () {
+                                location.href="file:///C:/Users/Bowen_Fang/Documents/loginModule/blogList.html";
+
+                            },1000);
+
+                        }
+                        else{
+                            alert("Please check your username and password then try again");
+                        }
+
+                    }
+                )
+
+            })
+
+        })
+    </script>
+
+</head>
+<body>
+
+
+Name: <input type="text" id="fullname"><br>
+Password: <input type="text" id="password">
+<button type="button" id="loginBtn" >submit</button>
+
+</body>
+</html>

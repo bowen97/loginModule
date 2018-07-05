@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>blogList</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script>
+    $(document).ready(function () {
+        $("button").click(function () {
+            $.get("http://localhost:8080/showBlog",function (data,status) {
+                alert(data+"\n status:"+status);
+
+
+            });
+
+        });
+
+    });
+
+    </script>
+</head>
+<body>
+<button>Get List</button>
+
+</body>
+</html>
